@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 var React = require('react-native');
 var {
@@ -15,11 +15,30 @@ const BeerURI = {
   uri: 'http://www.clker.com/cliparts/6/d/0/c/13216380871142975465beer-batter-is-better_1-md.png'
 };
 
-var colorPrefix = function (numberOfBeers) {
-  return (numberOfBeers - 0) * (255 - 0) / (15 - 0) + 0;
+const colorPrefix = function (num) {
+  return num * 255 / 15;
 }
 
-var javabinDemo = React.createClass({
+const BeerImages = React.createClass({
+  render: function() {
+    var { numberOfBeers } = this.props;
+
+    return <View style={styles.beers}>
+      { Array(numberOfBeers).fill().map((v, i) => this.beerImage(i)) }
+    </View>
+  },
+
+  beerImage: function(i) {
+    return <Image
+        key={ i }
+        style={styles.beerImage}
+        source={ BeerURI }
+      />
+  },
+});
+
+
+const AlcoMeter = React.createClass({
 
   getInitialState: function() {
     return {
@@ -38,6 +57,7 @@ var javabinDemo = React.createClass({
             minimumValue={0}
             maximumValue={16}
             onValueChange={(beers) => this.setState({ numberOfBeers: Math.floor(beers) })} />
+            
         <Text>Din promille:</Text>
         <Text 
           style={[ styles.alco, {
@@ -46,27 +66,14 @@ var javabinDemo = React.createClass({
             { this.alcohol() } %
         </Text>
 
-        <View style={styles.beers}>
-            { this.beerImages() }
-        </View>
+        <BeerImages numberOfBeers={ this.state.numberOfBeers }/>
       </View>
     );
   },
 
+
   alcohol: function() {
-    return ((this.state.numberOfBeers * 15) / ((75 * 1.7) - (0,15 * 4))).toFixed(2)
-  },
-
-  beerImage: function(i) {
-    return <Image
-        key={ i }
-        style={styles.beerImage}
-        source={ BeerURI }
-      />
-  },
-
-  beerImages: function() {
-      return Array(this.state.numberOfBeers).fill().map(this.beerImage)
+    return ((this.state.numberOfBeers * 15) / ((80 * 1.7) - (0,15 * 4))).toFixed(2)
   }
 
 });
@@ -103,4 +110,4 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('javabinDemo', () => javabinDemo);
+AppRegistry.registerComponent('javabinDemo', () => AlcoMeter);
