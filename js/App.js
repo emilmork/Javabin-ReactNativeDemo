@@ -69,7 +69,7 @@ const AlcoMeter = React.createClass({
           style={[ styles.alco, styles.centeredText, {
             color: `rgb(${colorPrefix(this.state.numberOfBeers)}, 0, 0)`
           }]}>
-            { this.alcohol() } %
+            { this.alcoholLevel() } %
         </Text>
 
         <BeerImages numberOfBeers={ this.state.numberOfBeers }/>
@@ -78,7 +78,7 @@ const AlcoMeter = React.createClass({
     );
   },
 
-  alcohol: function() {
+  alcoholLevel: function() {
     return ((this.state.numberOfBeers * 15) / ((80 * 1.7) - (0,15 * 4))).toFixed(2)
   }
 });
