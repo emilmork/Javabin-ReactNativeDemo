@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "react-native": "^0.14.2",
-    "react-native-navbar": "^1.0.7"
+    "react-native-seekbar-android": "^1.0.1"
   }
 }
