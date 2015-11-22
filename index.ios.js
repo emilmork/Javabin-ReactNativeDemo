@@ -20,6 +20,7 @@ const colorPrefix = function (num) {
 }
 
 const BeerImages = React.createClass({
+  
   render: function() {
     var { numberOfBeers } = this.props;
 
@@ -57,7 +58,7 @@ const AlcoMeter = React.createClass({
             minimumValue={0}
             maximumValue={16}
             onValueChange={(beers) => this.setState({ numberOfBeers: Math.floor(beers) })} />
-            
+
         <Text>Din promille:</Text>
         <Text 
           style={[ styles.alco, {
