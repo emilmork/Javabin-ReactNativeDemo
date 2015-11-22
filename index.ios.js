@@ -35,7 +35,8 @@ const BeerImages = React.createClass({
         style={styles.beerImage}
         source={ BeerURI }
       />
-  },
+  }
+
 });
 
 
@@ -71,7 +72,6 @@ const AlcoMeter = React.createClass({
       </View>
     );
   },
-
 
   alcohol: function() {
     return ((this.state.numberOfBeers * 15) / ((80 * 1.7) - (0,15 * 4))).toFixed(2)
